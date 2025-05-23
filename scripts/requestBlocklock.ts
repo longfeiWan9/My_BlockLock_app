@@ -16,20 +16,19 @@ async function main() {
     // 3. Prepare the params for invoking myBlocklockReceiver contract.
     // Set block height for blocklock (current block + 10)
     const blockHeight = BigInt(await ethers.provider.getBlockNumber() + 10);
+    const conditionBytes = encodeCondition(blockHeight);
 
     // Encrypt an messsage
-    const msg ="This message will be revealed after 10 blocks.";
+    const msg = ethers.parseEther("12");;
     const encoder = new SolidityEncoder();
-    const msgBytes = encoder.encodeString(msg);
+    const msgBytes = encoder.encodeUint256(msg);
     const encodedMessage = getBytes(msgBytes);
 
     // Encrypt the encoded message
     const blocklockjs = Blocklock.createFilecoinCalibnet(wallet);
     const ciphertext = blocklockjs.encrypt(encodedMessage, blockHeight);
 
-    // Generate the timelock encryption condition bytes string
-    const conditionBytes = encodeCondition(blockHeight);
-    const callbackGasLimit = 10_000_000;
+    const callbackGasLimit = 1000_000;
 
     console.log("Sending blocklock request to lock message until block:", blockHeight);
 
