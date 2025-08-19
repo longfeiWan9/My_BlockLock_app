@@ -11,10 +11,11 @@
   "license": "ISC",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.14",
     "hardhat": "^2.24.0"
   },
   "dependencies": {
-    "blocklock-js": "^0.0.8-rc3",
-    "blocklock-solidity": "^0.0.8"
+    "blocklock-js": "^1.0.0",
+    "blocklock-solidity": "^0.0.13"
   }
 }

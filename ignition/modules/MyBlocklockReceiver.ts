@@ -3,9 +3,12 @@
 
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
 
+const DEFAULT_SENDER = "0x82Fed730CbdeC5A2D8724F2e3b316a70A565e27e";
+
 const BlockLockModule = buildModule("BlockLockModule", (m) => {
-    const blocklockSenderProxyAddress = m.getParameter("sender", "0xF00aB3B64c81b6Ce51f8220EB2bFaa2D469cf702");
-    const blockReceiver = m.contract("MyBlocklockReceiver", [blocklockSenderProxyAddress]);
+    // Get the sender parameter with a default value
+    const blocklockSenderAddress = m.getParameter("sender", DEFAULT_SENDER);
+    const blockReceiver = m.contract("MyBlocklockReceiver", [blocklockSenderAddress]);
 
     return { blockReceiver };
 });
